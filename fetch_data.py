@@ -30,10 +30,6 @@ def enrich_asset(asset: AssetData) -> AssetData:
     return asset
 
 
-def enrich_assets(assets: List[AssetData]) -> List[AssetData]:
-    return [enrich_asset(asset) for asset in assets]
-
-
 def assign_weights(assets: List[AssetData], total_value: float):
     for asset in assets:
         if asset.value_thb is not None and total_value > 0:
