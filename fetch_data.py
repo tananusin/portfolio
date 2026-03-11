@@ -3,11 +3,10 @@ from typing import List
 from asset_data import AssetData
 from fetch_yfinance import fetch_data, get_price, get_fx_to_thb, get_52_week_high, get_52_week_low, get_trailing_pe, get_trailing_dividend_yield
 
-def can_fetch_data():
-    """Test if live data can be fetched successfully (e.g., not rate-limited or offline)."""
+def can_fetch_data() -> bool:
+    """Test if live data can be fetched successfully."""
     try:
-        price = fetch_data()
-        return price is not None
+        return fetch_data()
     except Exception:
         return False
 
