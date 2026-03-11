@@ -1,6 +1,6 @@
 # pe_percentile.py
 import streamlit as st
-from fetch_yfinance import get_valuation_stats
+from fetch_data import valuation_stats
 
 def display_valuation_stats(symbol: str):
     try:
@@ -14,7 +14,7 @@ def display_valuation_stats(symbol: str):
 
         if st.button("Fetch Valuation Stats"):
 
-            years_low, pe_25, pe_75 = get_valuation_stats(symbol, months)
+            years_low, pe_25, pe_75 = valuation_stats(symbol, months)
 
             if years_low is None:
                 st.error("Could not fetch data.")
