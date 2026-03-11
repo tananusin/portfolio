@@ -5,7 +5,7 @@ import pandas as pd
 from asset_data import AssetData
 from load_assets import load_assets_from_google_sheet
 from fetch_yfinance import can_fetch_data
-from portfolio_value import enrich_assets, summarize_assets, calculate_portfolio_total, assign_weights
+from portfolio_value import summarize_assets, combine_assets, calculate_portfolio_total, assign_weights
 from user_preferences import get_user_preferences, UserPreference
 from portfolio_view import get_portfolio_df, show_portfolio_table, show_allocation_pie_chart
 from pe_percentile import display_pe_percentiles
