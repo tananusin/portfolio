@@ -4,7 +4,6 @@ import pandas as pd
 
 from asset_data import AssetData
 from load_assets import load_assets_from_google_sheet
-from fetch_yfinance import fetch_data
 from fetch_data import can_fetch_data, enrich_assets
 from portfolio_value import summarize_assets, combine_assets, calculate_portfolio_total, assign_weights
 from user_preferences import get_user_preferences, UserPreference
@@ -29,8 +28,8 @@ except Exception:
 # --- Check Password and Fetch Live Data ---
 if user_pref.password == st.secrets["credentials"]["app_password"]:
     st.success("🔓 Password Correct! Checking live data availability...")
-    if fetch_data():
-#    if can_fetch_data():
+
+    if can_fetch_data():
         with st.spinner("Fetching live prices and FX rates..."):
             assets = enrich_assets(assets)
     else:
