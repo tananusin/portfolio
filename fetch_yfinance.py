@@ -4,7 +4,7 @@ import pandas as pd
 import numpy as np
 from datetime import datetime, timedelta
 
-def can_fetch_data(test_symbol: str = "AAPL") -> bool:
+def fetch_data(test_symbol: str = "AAPL") -> bool:
     """Test if live data can be fetched successfully (e.g., not rate-limited or offline)."""
     try:
         ticker = yf.Ticker(test_symbol)
