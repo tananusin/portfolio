@@ -79,6 +79,18 @@ def show_google_sheet_data_table(portfolio_df: pd.DataFrame):
     }
     st.dataframe(portfolio_df[show_cols].style.format(format_dict))
 
+def show_market_data_table(portfolio_df: pd.DataFrame):
+    show_cols = ["Symbol", "Currency", "Price", "Fx", "52w high", "52w low", "PE", "Yield"]
+    format_dict = {
+        "Price": lambda x: f"{x:,.2f}" if x != 0.0 else "-",
+        "Fx": lambda x: f"{x:,.2f}" if x != 0.0 else "-",
+        "52w high": lambda x: f"{x:,.2f}" if x else "-",
+        "52w low": lambda x: f"{x:,.2f}" if x else "-",
+        "PE": lambda x: f"{x:,.2f}" if pd.notnull(x) and x != 0.0 else "-",
+        "Yield": lambda x: f"{x * 100:.2f}%" if x not in [None, 0.0] else "-",
+    }
+    st.dataframe(portfolio_df[show_cols].style.format(format_dict))
+
 def show_allocation_pie_chart(portfolio_df: pd.DataFrame, total_thb: float):
     chart_df = portfolio_df[["Name", "Value (THB)"]].copy()
     chart_df["weight (%)"] = (chart_df["Value (THB)"] / total_thb * 100).round(2)
