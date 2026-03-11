@@ -1,13 +1,12 @@
 # fetch_data.py
 from typing import List
 from asset_data import AssetData
-from fetch_yfinance import get_price, get_fx_to_thb, get_52_week_high, get_52_week_low, get_trailing_pe, get_trailing_dividend_yield
+from fetch_yfinance import fetch_data, get_price, get_fx_to_thb, get_52_week_high, get_52_week_low, get_trailing_pe, get_trailing_dividend_yield
 
-def can_fetch_data(test_symbol: str = "AAPL") -> bool:
+def can_fetch_data():
     """Test if live data can be fetched successfully (e.g., not rate-limited or offline)."""
     try:
-        ticker = yf.Ticker(test_symbol)
-        price = ticker.info.get("regularMarketPrice", None)
+        price = fetch_data()
         return price is not None
     except Exception:
         return False
