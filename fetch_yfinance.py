@@ -75,31 +75,43 @@ def get_trailing_dividend_yield(symbol: str) -> float | None:
     except Exception:
         return None
 
-def get_pe_percentiles(symbol: str, months: int):
+def get_valuation_stats(symbol: str, months: int):
     try:
         end_date = datetime.today()
         start_date = end_date - timedelta(days=months * 30)
 
         ticker = yf.Ticker(symbol)
-        hist = ticker.history(start=start_date.strftime('%Y-%m-%d'),
-                              end=end_date.strftime('%Y-%m-%d'),
-                              interval='1mo')
+        hist = ticker.history(
+            start=start_date.strftime('%Y-%m-%d'),
+            end=end_date.strftime('%Y-%m-%d'),
+            interval='1mo'
+        )
 
         info = ticker.info
-        trailing_eps = info.get('trailingEps')
+        trailing_eps = info.get("trailingEps")
 
         if hist.empty:
-            return None, None
+            return None, None, None
+
+        # --- Years Low ---
+        hist = hist[hist["Close"] > 0]
+        years_low = hist["Close"].min()
+
+        # --- PE Calculation ---
         if trailing_eps in [None, 0]:
-            return None, None
+            return years_low, None, None
 
-        hist = hist[hist['Close'] > 0]
-        hist['PE'] = hist['Close'] / trailing_eps
-        hist = hist[hist['PE'] < 1000]  # filter extreme outliers
+        hist["PE"] = hist["Close"] / trailing_eps
+        hist = hist[hist["PE"] < 1000]  # remove extreme outliers
 
-        pe_series = hist['PE']
+        pe_series = hist["PE"]
+
+        if len(pe_series) == 0:
+            return years_low, None, None
+
         percentiles = np.percentile(pe_series, [25, 75])
-        return float(percentiles[0]), float(percentiles[1])
+
+        return years_low, float(percentiles[0]), float(percentiles[1])
 
     except Exception:
-        return None, None
+        return None, None, None
