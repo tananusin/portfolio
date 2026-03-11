@@ -7,7 +7,7 @@ from load_assets import load_assets_from_google_sheet
 from fetch_yfinance import can_fetch_data
 from portfolio_value import enrich_assets, summarize_assets, calculate_portfolio_total, assign_weights
 from user_preferences import get_user_preferences, UserPreference
-from portfolio_view import get_portfolio_df, show_portfolio_table, show_market_data_table, show_summary_signal_table, show_price_change_table, show_pe_signal_table, show_yield_signal_table, show_allocation_pie_chart, show_target_allocation_pie_chart
+from portfolio_view import get_portfolio_df, show_portfolio_table, show_market_data_table, show_allocation_pie_chart, show_target_allocation_pie_chart
 from pe_percentile import display_pe_percentiles
 
 
