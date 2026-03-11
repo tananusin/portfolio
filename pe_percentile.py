@@ -19,7 +19,7 @@ def display_valuation_stats(symbol: str):
             return years_low, pe_25, pe_75
         else:
             st.info("Click the button to fetch P/E percentiles.")
-            return None, None
+            return None, None, None
 
     except Exception:
-        return None, None
+        return None, None, None
