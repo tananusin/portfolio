@@ -37,4 +37,5 @@ def display_valuation_stats(symbol: str):
             return None, None, None
 
     except Exception:
+        st.write("DEBUG:")
         return None, None, None
