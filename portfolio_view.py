@@ -80,7 +80,7 @@ def show_google_sheet_data_table(portfolio_df: pd.DataFrame):
     st.dataframe(portfolio_df[show_cols].style.format(format_dict))
 
 def show_market_data_table(portfolio_df: pd.DataFrame):
-    show_cols = ["Symbol", "Currency", "Price", "Fx", "52w high", "52w low", "PE", "Yield"]
+    show_cols = ["Name", "Currency", "Price", "Fx", "52w high", "52w low", "PE", "Yield"]
     format_dict = {
         "Price": lambda x: f"{x:,.2f}" if x != 0.0 else "-",
         "Fx": lambda x: f"{x:,.2f}" if x != 0.0 else "-",
