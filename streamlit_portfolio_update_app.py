@@ -73,8 +73,11 @@ with tab2:
 
 
 # --- Display Pie Charts ---
+assets_combine = combine_assets(assets)
+portfolio_combine_df = get_portfolio_df(assets_combine)
+
 st.subheader("📊 Allocation Pie Chart")
-show_allocation_pie_chart(portfolio_df, total_thb)
+show_allocation_pie_chart(portfolio_combine_df, total_thb)
 
 
 
