@@ -37,4 +37,4 @@ def enrich_assets(assets: List[AssetData]) -> List[AssetData]:
 
 def valuation_stats(symbol: str, months: int):
     years_low, pe_25, pe_75 = get_valuation_stats(symbol, months)
-    return years_low, pe_25, pe_7
+    return years_low, pe_25, pe_75
