@@ -1,7 +1,7 @@
 # fetch_data.py
 from typing import List
 from asset_data import AssetData
-from fetch_yfinance import fetch_data, get_price, get_fx_to_thb, get_52_week_high, get_52_week_low, get_trailing_pe, get_trailing_dividend_yield, get_valuation_stats
+from fetch_yfinance import fetch_data, get_price, get_fx_to_thb, get_52_week_high, get_52_week_low, get_trailing_eps, get_trailing_dps, get_valuation_stats
 
 def can_fetch_data() -> bool:
     return fetch_data()
